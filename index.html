@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CALYX – Capital × Culture × Access</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --bg: #f5f4f2;
+      --card: #ffffff;
+      --text: #181818;
+      --muted: #4a4a50;
+      --accent: #b89b63;
+      --border: #e0ded8;
+      --max-width: 980px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, system-ui, "SF Pro Text", sans-serif;
+      background: radial-gradient(circle at top left, #f0e7dd, #f5f4f2 55%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.7;
+    }
+
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 40px 20px 56px;
+    }
+
+    header {
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .logo {
+      font-family: "Times New Roman", "Georgia", serif;
+      font-size: 18px;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .strapline {
+      margin-top: 14px;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    main { margin-top: 36px; }
+
+    section { margin-bottom: 40px; }
+
+    h1 {
+      font-family: "Times New Roman", "Georgia", serif;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin: 0 0 18px;
+    }
+
+    h2 {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin: 0 0 14px;
+      color: #6c6c72;
+    }
+
+    p {
+      margin: 0 0 8px;
+      font-size: 14px;
+    }
+
+    .hero-block {
+      background: rgba(255,255,255,0.6);
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      padding: 22px 22px 20px;
+    }
+
+    .hero-lead {
+      max-width: 640px;
+      margin-bottom: 6px;
+    }
+
+    .hero-sub {
+      max-width: 680px;
+      color: var(--muted);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 28px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      padding: 20px 20px 18px;
+      font-size: 14px;
+    }
+
+    ul {
+      margin: 6px 0 0;
+      padding-left: 18px;
+    }
+
+    li {
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    .sectors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .sector-title {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .sector-text {
+      margin: 0;
+      color: #6c6c72;
+      font-size: 13px;
+    }
+
+    .label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #6c6c72;
+      margin-top: 10px;
+      margin-bottom: 4px;
+    }
+
+    .contact a {
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+      padding-bottom: 1px;
+    }
+
+    .contact a:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    footer {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 720px) {
+      .page { padding: 28px 16px 40px; }
+      .two-col { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+      h1 { font-size: 18px; letter-spacing: 0.16em; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="logo">CALYX</div>
+      <div class="strapline">Capital × Culture × Access</div>
+    </header>
+
+    <main>
+      <section>
+        <div class="hero-block">
+          <h1>Connecting Power Across Continents</h1>
+          <p class="hero-lead">
+            Calyx is a discreet global access platform enabling high-trust connectivity between capital, industry,
+            and strategic operators.
+          </p>
+          <p class="hero-sub">
+            We help organisations unlock partnerships, market access, and cross-border opportunities across China,
+            the Gulf, and Africa.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div class="two-col">
+          <div>
+            <h2>What We Do</h2>
+            <div class="card">
+              <ul>
+                <li><strong>Strategic Access</strong> — Curated introductions to enterprise leaders, investors, operators, and regional stakeholders.</li>
+                <li><strong>Intelligence &amp; Ecosystem Understanding</strong> — Market clarity across regulatory, cultural, and industry landscapes.</li>
+                <li><strong>Opportunity Facilitation</strong> — Cross-border collaborations, joint ventures, and investment pathways.</li>
+                <li><strong>Local Execution Networks</strong> — On-ground operator support and stakeholder engagement through trusted partners.</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <h2>Footprint</h2>
+            <div class="card" style="color: #181818;">
+              <p><strong>China</strong> — Industrial scale, manufacturing capacity, and outbound capital.</p>
+              <p><strong>Gulf</strong> — Sovereign influence, diversification agendas, and regional investment hubs.</p>
+              <p><strong>Africa</strong> — Emerging markets in energy, infrastructure, and consumer growth.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Sectors of Influence</h2>
+        <div class="sectors-grid">
+          <div class="card">
+            <div class="sector-title">Energy &amp; Natural Resources</div>
+            <p class="sector-text">Oil, gas, minerals, renewables.</p>
+          </div>
+          <div class="card">
+            <div class="sector-title">Logistics &amp; Infrastructure</div>
+            <p class="sector-text">Ports, aviation, supply chain, free zones.</p>
+          </div>
+          <div class="card">
+            <div class="sector-title">Consumer &amp; Lifestyle Markets</div>
+            <p class="sector-text">Beauty, fragrance, home, retail, distribution.</p>
+          </div>
+          <div class="card">
+            <div class="sector-title">Capital &amp; Investment Ecosystems</div>
+            <p class="sector-text">Family offices, private equity, venture capital.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Engagement</h2>
+        <div class="card">
+          <p class="muted">
+            Calyx works by invitation or referral. We work with a limited number of organisations whose ambitions align with
+            our ecosystem and principles of discretion and high-trust collaboration.
+          </p>
+          <p class="muted">
+            All engagements are vetted to ensure strategic fit, confidentiality, and mutual value creation.
+          </p>
+          <div class="contact">
+            <div class="label">Contact</div>
+            <p>
+              <a href="mailto:concierge@calyx.global">concierge@calyx.global</a><br>
+              Dubai · Lagos · Beijing
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© Calyx Global Ltd. All rights reserved.</div>
+      <div>concierge@calyx.global</div>
+    </footer>
+  </div>
+</body>
+</html>
