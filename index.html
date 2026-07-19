@@ -58,8 +58,15 @@
     .capabilities span { font-size: 11px; }
     .capabilities h3 { margin: 80px 0 20px; font-size: 26px; font-weight: 400; letter-spacing: -.03em; }
     .capabilities p { color: var(--muted); font-size: 15px; line-height: 1.55; }
-    .capabilities article:hover { background: var(--brown); color: #fff; }
-    .capabilities article:hover p { color: var(--soft); }
+    .capabilities article:hover,
+    .capabilities article:active,
+    .capabilities article:focus-visible,
+    .capabilities article.is-active { background: var(--brown); color: #fff; }
+    .capabilities article:hover p,
+    .capabilities article:active p,
+    .capabilities article:focus-visible p,
+    .capabilities article.is-active p { color: var(--soft); }
+    .capabilities article:focus-visible { outline: 2px solid #fff; outline-offset: -6px; }
 
     .footprint { padding: 130px 0; background: var(--ink); color: #fff; }
     .light { color: #b7b5b0; }
@@ -71,7 +78,11 @@
     .regions h3 { margin: 170px 0 15px; font-family: Georgia, serif; font-size: 70px; font-weight: 400; }
     .regions p { max-width: 300px; color: var(--soft); font-size: 14px; line-height: 1.5; }
     .regions b { position: absolute; right: -16px; bottom: -42px; color: #ffffff09; font-size: 210px; line-height: 1; }
-    .regions article:hover { background: var(--brown); }
+    .regions article:hover,
+    .regions article:active,
+    .regions article:focus-visible,
+    .regions article.is-active { background: var(--brown); }
+    .regions article:focus-visible { outline: 2px solid #fff; outline-offset: -6px; }
 
     .sectors { display: grid; grid-template-columns: 1fr 1.6fr; gap: 110px; padding: 145px 0; }
     .sectorsIntro h2 { margin-top: 55px; font-size: 64px; }
@@ -184,10 +195,10 @@
     </section>
 
     <section class="capabilities shell">
-      <article><span>01</span><h3>Strategic access</h3><p>Curated introductions to enterprise leaders, investors, operators, and regional stakeholders.</p></article>
-      <article><span>02</span><h3>Intelligence</h3><p>Market clarity across regulatory, cultural, and industry landscapes.</p></article>
-      <article><span>03</span><h3>Opportunity facilitation</h3><p>Cross-border collaborations, joint ventures, and investment pathways.</p></article>
-      <article><span>04</span><h3>Local execution</h3><p>On-ground operator support and stakeholder engagement through trusted partners.</p></article>
+      <article tabindex="0"><span>01</span><h3>Strategic access</h3><p>Curated introductions to enterprise leaders, investors, operators, and regional stakeholders.</p></article>
+      <article tabindex="0"><span>02</span><h3>Intelligence</h3><p>Market clarity across regulatory, cultural, and industry landscapes.</p></article>
+      <article tabindex="0"><span>03</span><h3>Opportunity facilitation</h3><p>Cross-border collaborations, joint ventures, and investment pathways.</p></article>
+      <article tabindex="0"><span>04</span><h3>Local execution</h3><p>On-ground operator support and stakeholder engagement through trusted partners.</p></article>
     </section>
 
     <section class="footprint" id="footprint">
@@ -196,9 +207,9 @@
         <h2>One network.<br>Three vantage points.</h2>
       </div>
       <div class="regions shell">
-        <article><span>31.2° N</span><h3>China</h3><p>Industrial scale, manufacturing capacity, and outbound capital.</p><b>01</b></article>
-        <article><span>25.2° N</span><h3>Gulf</h3><p>Sovereign influence, diversification agendas, and regional investment hubs.</p><b>02</b></article>
-        <article><span>9.1° N</span><h3>Africa</h3><p>Emerging markets in energy, infrastructure, and consumer growth.</p><b>03</b></article>
+        <article tabindex="0"><span>31.2° N</span><h3>China</h3><p>Industrial scale, manufacturing capacity, and outbound capital.</p><b>01</b></article>
+        <article tabindex="0"><span>25.2° N</span><h3>Gulf</h3><p>Sovereign influence, diversification agendas, and regional investment hubs.</p><b>02</b></article>
+        <article tabindex="0"><span>9.1° N</span><h3>Africa</h3><p>Emerging markets in energy, infrastructure, and consumer growth.</p><b>03</b></article>
       </div>
     </section>
 
@@ -236,5 +247,72 @@
       <small>© 2026 Calyx Global Ltd.</small>
     </footer>
   </main>
+  <script>
+    (() => {
+      const groups = [
+        {
+          section: document.querySelector('.capabilities'),
+          cards: [...document.querySelectorAll('.capabilities article')]
+        },
+        {
+          section: document.querySelector('.footprint'),
+          cards: [...document.querySelectorAll('.regions article')]
+        }
+      ];
+      const touchLayout = window.matchMedia('(max-width: 900px) and (hover: none)');
+      let frame;
+
+      function clearActive(group) {
+        group.cards.forEach(card => card.classList.remove('is-active'));
+      }
+
+      function updateActiveCard() {
+        frame = undefined;
+        if (!touchLayout.matches) {
+          groups.forEach(clearActive);
+          return;
+        }
+
+        const focusLine = window.innerHeight * 0.52;
+        groups.forEach(group => {
+          const section = group.section.getBoundingClientRect();
+          if (section.bottom <= focusLine || section.top >= focusLine) {
+            clearActive(group);
+            return;
+          }
+
+          let active = group.cards[0];
+          let nearest = Infinity;
+          group.cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            const distance = Math.abs(rect.top + rect.height / 2 - focusLine);
+            if (distance < nearest) {
+              nearest = distance;
+              active = card;
+            }
+          });
+
+          group.cards.forEach(card => card.classList.toggle('is-active', card === active));
+        });
+      }
+
+      function scheduleUpdate() {
+        if (!frame) frame = requestAnimationFrame(updateActiveCard);
+      }
+
+      window.addEventListener('scroll', scheduleUpdate, { passive: true });
+      window.addEventListener('resize', scheduleUpdate, { passive: true });
+      touchLayout.addEventListener('change', scheduleUpdate);
+      groups.forEach(group => {
+        group.cards.forEach(card => card.addEventListener('pointerdown', () => {
+          if (touchLayout.matches) {
+            clearActive(group);
+            card.classList.add('is-active');
+          }
+        }));
+      });
+      scheduleUpdate();
+    })();
+  </script>
 </body>
 </html>
