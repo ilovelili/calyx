@@ -1,276 +1,240 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>CALYX – Capital × Culture × Access</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CALYX — Capital × Culture × Access</title>
+  <meta name="description" content="A discreet global access platform connecting capital, industry, and strategic operators across China, the Gulf, and Africa.">
+  <link rel="icon" href="favicon.svg">
   <style>
     :root {
-      --bg: #f5f4f2;
-      --card: #ffffff;
-      --text: #181818;
-      --muted: #4a4a50;
-      --accent: #b89b63;
-      --border: #e0ded8;
-      --max-width: 980px;
+      --ink: #000;
+      --ivory: #f9f7f4;
+      --soft: #dfe0dc;
+      --brown: #8d5f44;
+      --muted: #66645f;
+      --line: #00000029;
     }
 
-    * { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--ivory); color: var(--ink); font-family: Arial, Helvetica, sans-serif; line-height: 1.5; }
+    a { color: inherit; text-decoration: none; }
+    .shell { width: min(1480px, calc(100% - 80px)); margin-inline: auto; }
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, system-ui, "SF Pro Text", sans-serif;
-      background: radial-gradient(circle at top left, #f0e7dd, #f5f4f2 55%);
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
-      line-height: 1.7;
+    .nav { position: relative; z-index: 3; display: flex; height: 104px; align-items: center; border-bottom: 1px solid var(--line); }
+    .wordmark { font-size: 27px; font-weight: 900; letter-spacing: -1.5px; }
+    .wordmark span { margin-left: 3px; vertical-align: top; font-size: 8px; }
+    .nav nav { display: flex; gap: 40px; margin-right: 65px; margin-left: auto; }
+    .nav nav a, .navCta { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .navCta { padding: 16px 19px; border-radius: 2px; background: var(--ink); color: #fff; }
+    .navCta span { margin-left: 22px; color: var(--soft); }
+
+    .hero { position: relative; min-height: 760px; padding-top: 76px; overflow: hidden; }
+    .eyebrow, .sectionLabel { font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    .pulse { display: inline-block; width: 8px; height: 8px; margin-right: 10px; border-radius: 50%; background: var(--brown); box-shadow: 0 0 0 5px #8d5f4429; }
+    h1 { max-width: 1150px; margin: 63px 0 38px; font-size: clamp(75px, 9vw, 144px); font-weight: 800; line-height: .84; letter-spacing: -.075em; }
+    h1 em { color: var(--brown); font-family: Georgia, serif; font-weight: 400; }
+    .heroBottom { display: flex; align-items: end; justify-content: space-between; }
+    .heroBottom p { max-width: 490px; margin: 0; font-size: 20px; line-height: 1.45; }
+    .circleLink { display: grid; width: 56px; height: 56px; border: 1px solid var(--ink); border-radius: 50%; place-items: center; font-size: 20px; }
+    .route { position: absolute; top: 170px; right: 0; width: 34%; height: 330px; opacity: .9; }
+    .routeLine { position: absolute; top: 120px; width: 100%; height: 160px; border-top: 1px solid #8d8982; border-radius: 50%; transform: rotate(-20deg); }
+    .dot { position: absolute; z-index: 2; width: 11px; height: 11px; border: 3px solid var(--ink); border-radius: 50%; background: var(--brown); }
+    .d1 { top: 105px; left: 12%; }
+    .d2 { top: 36px; left: 55%; }
+    .d3 { top: 4px; right: 4%; }
+    .route b { position: absolute; font-size: 9px; letter-spacing: .14em; }
+    .l1 { top: 126px; left: 8%; }
+    .l2 { top: 57px; left: 52%; }
+    .l3 { top: 24px; right: 0; }
+
+    .statement { display: grid; grid-template-columns: 1fr 2fr; padding: 130px 0 120px; border-top: 1px solid var(--line); }
+    .statement h2, .footprint h2, .sectorsIntro h2, .engagement h2 { margin: 0; font-size: clamp(48px, 6vw, 90px); font-weight: 700; line-height: .98; letter-spacing: -.055em; }
+    .statement > div > p { max-width: 735px; margin: 40px 0 0; font-size: 22px; line-height: 1.55; }
+
+    .capabilities { display: grid; grid-template-columns: repeat(4, 1fr); margin-bottom: 140px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    .capabilities article { position: relative; min-height: 345px; padding: 28px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background .25s, color .25s; }
+    .capabilities span { font-size: 11px; }
+    .capabilities h3 { margin: 80px 0 20px; font-size: 26px; font-weight: 400; letter-spacing: -.03em; }
+    .capabilities p { color: var(--muted); font-size: 15px; line-height: 1.55; }
+    .capabilities article:hover { background: var(--brown); color: #fff; }
+    .capabilities article:hover p { color: var(--soft); }
+
+    .footprint { padding: 130px 0; background: var(--ink); color: #fff; }
+    .light { color: #b7b5b0; }
+    .footprintHead { display: grid; grid-template-columns: 1fr 2fr; }
+    .regions { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 100px; }
+    .regions article { position: relative; height: 430px; padding: 30px; overflow: hidden; border: 1px solid #ffffff40; transition: background .25s; }
+    .regions article + article { border-left: 0; }
+    .regions span { color: #b7b5b0; font-size: 10px; letter-spacing: .15em; }
+    .regions h3 { margin: 170px 0 15px; font-family: Georgia, serif; font-size: 70px; font-weight: 400; }
+    .regions p { max-width: 300px; color: var(--soft); font-size: 14px; line-height: 1.5; }
+    .regions b { position: absolute; right: -16px; bottom: -42px; color: #ffffff09; font-size: 210px; line-height: 1; }
+    .regions article:hover { background: var(--brown); }
+
+    .sectors { display: grid; grid-template-columns: 1fr 1.6fr; gap: 110px; padding: 145px 0; }
+    .sectorsIntro h2 { margin-top: 55px; font-size: 64px; }
+    .sectorList article { display: grid; grid-template-columns: 60px 1fr; align-items: center; padding: 30px 0; border-top: 1px solid var(--line); }
+    .sectorList article:last-child { border-bottom: 1px solid var(--line); }
+    .sectorList span { font-size: 10px; }
+    .sectorList h3 { margin: 0 0 8px; font-size: 28px; font-weight: 400; letter-spacing: -.03em; }
+    .sectorList p { margin: 0; color: var(--muted); font-size: 13px; }
+    .sectorList article:hover h3 { font-family: Georgia, serif; font-style: italic; font-weight: 400; }
+
+    .engagement { display: grid; grid-template-columns: 2fr 1fr; margin-bottom: 100px; }
+    .engagementCard { padding: 70px; background: var(--brown); color: #fff; }
+    .engagementCard h2 { margin: 50px 0 35px; font-size: 72px; }
+    .engagementCard > p:not(.sectionLabel) { max-width: 560px; color: var(--ivory); font-size: 17px; line-height: 1.6; }
+    .engagementCard > a { display: inline-flex; margin-top: 55px; padding: 20px; background: #fff; color: var(--ink); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .engagementCard > a span { margin-left: 70px; color: var(--brown); }
+    .engagement aside { display: flex; flex-direction: column; justify-content: space-between; padding: 40px; background: var(--soft); }
+    .engagement aside > span { font-size: 10px; letter-spacing: .15em; }
+    .seal { display: flex; align-items: center; justify-content: center; color: var(--brown); font-family: Georgia, serif; font-size: 120px; }
+    .seal small { margin-left: -15px; color: var(--ink); font-family: Arial, sans-serif; font-size: 7px; line-height: 2; letter-spacing: .13em; }
+    .engagement aside p { max-width: 300px; font-size: 15px; line-height: 1.55; }
+
+    footer { display: grid; grid-template-columns: 1fr 1fr 1fr auto; align-items: center; min-height: 150px; border-top: 1px solid var(--line); font-size: 12px; }
+    footer p { margin: 0; color: var(--muted); }
+    footer > a:not(.wordmark) { text-decoration: underline; }
+    footer small { color: var(--muted); }
+
+    @media (max-width: 900px) {
+      .shell { width: min(calc(100% - 36px), 1480px); }
+      .nav { height: 82px; }
+      .nav nav { display: none; }
+      .navCta { margin-left: auto; }
+      .hero { min-height: 680px; padding-top: 60px; }
+      h1 { margin-top: 55px; font-size: 20vw; }
+      .route { display: none; }
+      .heroBottom { align-items: center; }
+      .heroBottom p { max-width: 75%; font-size: 17px; }
+      .statement, .footprintHead, .sectors { grid-template-columns: 1fr; gap: 55px; padding-top: 90px; padding-bottom: 90px; }
+      .capabilities { grid-template-columns: 1fr 1fr; margin-bottom: 90px; }
+      .capabilities article { min-height: 270px; }
+      .regions { grid-template-columns: 1fr; margin-top: 60px; }
+      .regions article { height: 320px; }
+      .regions article + article { border-top: 0; border-left: 1px solid #ffffff40; }
+      .regions h3 { margin-top: 95px; }
+      .engagement { grid-template-columns: 1fr; }
+      .engagementCard { padding: 45px 28px; }
+      .engagementCard h2 { font-size: 50px; }
+      .engagement aside { min-height: 420px; }
+      .sectorsIntro h2 { font-size: 52px; }
+      footer { grid-template-columns: 1fr 1fr; gap: 24px; padding: 40px 0; }
     }
 
-    .page {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 40px 20px 56px;
+    @media (max-width: 560px) {
+      .navCta { padding: 13px; font-size: 10px; }
+      .navCta span { margin-left: 8px; }
+      .eyebrow { font-size: 9px; }
+      .hero { min-height: 620px; }
+      .heroBottom p { max-width: 78%; font-size: 15px; }
+      .statement { padding-bottom: 75px; }
+      .statement h2 { font-size: 48px; }
+      .statement > div > p { font-size: 18px; }
+      .capabilities { grid-template-columns: 1fr; }
+      .capabilities article { min-height: 235px; }
+      .capabilities h3 { margin-top: 55px; }
+      .footprint { padding: 85px 0; }
+      .footprint h2 { font-size: 50px; }
+      .regions h3 { font-size: 58px; }
+      .sectors { gap: 50px; }
+      .sectorList article { grid-template-columns: 40px 1fr; }
+      .sectorList h3 { font-size: 21px; }
+      .engagementCard h2 { font-size: 42px; }
+      .engagementCard > a span { margin-left: 25px; }
+      footer { grid-template-columns: 1fr; }
     }
 
-    header {
-      padding-bottom: 36px;
-      border-bottom: 1px solid rgba(0,0,0,0.04);
-    }
-
-    .logo {
-      font-family: "Times New Roman", "Georgia", serif;
-      font-size: 18px;
-      letter-spacing: 0.38em;
-      text-transform: uppercase;
-      font-weight: 500;
-    }
-
-    .strapline {
-      margin-top: 14px;
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    main { margin-top: 36px; }
-
-    section { margin-bottom: 40px; }
-
-    h1 {
-      font-family: "Times New Roman", "Georgia", serif;
-      font-size: 22px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin: 0 0 18px;
-    }
-
-    h2 {
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      margin: 0 0 14px;
-      color: #6c6c72;
-    }
-
-    p {
-      margin: 0 0 8px;
-      font-size: 14px;
-    }
-
-    .hero-block {
-      background: rgba(255,255,255,0.6);
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      padding: 22px 22px 20px;
-    }
-
-    .hero-lead {
-      max-width: 640px;
-      margin-bottom: 6px;
-    }
-
-    .hero-sub {
-      max-width: 680px;
-      color: var(--muted);
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 28px;
-    }
-
-    .card {
-      background: var(--card);
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      padding: 20px 20px 18px;
-      font-size: 14px;
-    }
-
-    ul {
-      margin: 6px 0 0;
-      padding-left: 18px;
-    }
-
-    li {
-      margin-bottom: 6px;
-      font-size: 14px;
-    }
-
-    .sectors-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-    }
-
-    .sector-title {
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-
-    .sector-text {
-      margin: 0;
-      color: #6c6c72;
-      font-size: 13px;
-    }
-
-    .label {
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #6c6c72;
-      margin-top: 10px;
-      margin-bottom: 4px;
-    }
-
-    .contact a {
-      color: var(--text);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(0,0,0,0.2);
-      padding-bottom: 1px;
-    }
-
-    .contact a:hover {
-      border-bottom-color: var(--accent);
-    }
-
-    footer {
-      margin-top: 20px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(0,0,0,0.06);
-      font-size: 11px;
-      color: var(--muted);
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 720px) {
-      .page { padding: 28px 16px 40px; }
-      .two-col { grid-template-columns: minmax(0, 1fr); gap: 20px; }
-      h1 { font-size: 18px; letter-spacing: 0.16em; }
-    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
 </head>
 <body>
-  <div class="page">
-    <header>
-      <div class="logo">CALYX</div>
-      <div class="strapline">Capital × Culture × Access</div>
+  <main>
+    <header class="nav shell">
+      <a class="wordmark" href="#top" aria-label="Calyx home">CALYX<span>®</span></a>
+      <nav aria-label="Primary navigation">
+        <a href="#approach">Approach</a>
+        <a href="#footprint">Footprint</a>
+        <a href="#sectors">Sectors</a>
+      </nav>
+      <a class="navCta" href="mailto:concierge@calyx.global">Private enquiry <span>→</span></a>
     </header>
 
-    <main>
-      <section>
-        <div class="hero-block">
-          <h1>Connecting Power Across Continents</h1>
-          <p class="hero-lead">
-            Calyx is a discreet global access platform enabling high-trust connectivity between capital, industry,
-            and strategic operators.
-          </p>
-          <p class="hero-sub">
-            We help organisations unlock partnerships, market access, and cross-border opportunities across China,
-            the Gulf, and Africa.
-          </p>
-        </div>
-      </section>
+    <section class="hero shell" id="top">
+      <div class="eyebrow"><span class="pulse"></span> Global access platform · Dubai / Lagos / Beijing</div>
+      <h1>Connecting power<br>across <em>continents.</em></h1>
+      <div class="heroBottom">
+        <p>Calyx enables high-trust connectivity between capital, industry, and strategic operators.</p>
+        <a class="circleLink" href="#approach" aria-label="Explore our approach">↓</a>
+      </div>
+      <div class="route" aria-hidden="true">
+        <span class="routeLine"></span><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i>
+        <b class="l1">CHINA</b><b class="l2">GULF</b><b class="l3">AFRICA</b>
+      </div>
+    </section>
 
-      <section>
-        <div class="two-col">
-          <div>
-            <h2>What We Do</h2>
-            <div class="card">
-              <ul>
-                <li><strong>Strategic Access</strong> — Curated introductions to enterprise leaders, investors, operators, and regional stakeholders.</li>
-                <li><strong>Intelligence &amp; Ecosystem Understanding</strong> — Market clarity across regulatory, cultural, and industry landscapes.</li>
-                <li><strong>Opportunity Facilitation</strong> — Cross-border collaborations, joint ventures, and investment pathways.</li>
-                <li><strong>Local Execution Networks</strong> — On-ground operator support and stakeholder engagement through trusted partners.</li>
-              </ul>
-            </div>
-          </div>
-          <div>
-            <h2>Footprint</h2>
-            <div class="card" style="color: #181818;">
-              <p><strong>China</strong> — Industrial scale, manufacturing capacity, and outbound capital.</p>
-              <p><strong>Gulf</strong> — Sovereign influence, diversification agendas, and regional investment hubs.</p>
-              <p><strong>Africa</strong> — Emerging markets in energy, infrastructure, and consumer growth.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+    <section class="statement shell" id="approach">
+      <p class="sectionLabel">01 / Our purpose</p>
+      <div>
+        <h2>Influence moves through trust.</h2>
+        <p>We help organisations unlock partnerships, market access, and cross-border opportunities across three of the world’s most consequential growth regions.</p>
+      </div>
+    </section>
 
-      <section>
-        <h2>Sectors of Influence</h2>
-        <div class="sectors-grid">
-          <div class="card">
-            <div class="sector-title">Energy &amp; Natural Resources</div>
-            <p class="sector-text">Oil, gas, minerals, renewables.</p>
-          </div>
-          <div class="card">
-            <div class="sector-title">Logistics &amp; Infrastructure</div>
-            <p class="sector-text">Ports, aviation, supply chain, free zones.</p>
-          </div>
-          <div class="card">
-            <div class="sector-title">Consumer &amp; Lifestyle Markets</div>
-            <p class="sector-text">Beauty, fragrance, home, retail, distribution.</p>
-          </div>
-          <div class="card">
-            <div class="sector-title">Capital &amp; Investment Ecosystems</div>
-            <p class="sector-text">Family offices, private equity, venture capital.</p>
-          </div>
-        </div>
-      </section>
+    <section class="capabilities shell">
+      <article><span>01</span><h3>Strategic access</h3><p>Curated introductions to enterprise leaders, investors, operators, and regional stakeholders.</p></article>
+      <article><span>02</span><h3>Intelligence</h3><p>Market clarity across regulatory, cultural, and industry landscapes.</p></article>
+      <article><span>03</span><h3>Opportunity facilitation</h3><p>Cross-border collaborations, joint ventures, and investment pathways.</p></article>
+      <article><span>04</span><h3>Local execution</h3><p>On-ground operator support and stakeholder engagement through trusted partners.</p></article>
+    </section>
 
-      <section>
-        <h2>Engagement</h2>
-        <div class="card">
-          <p class="muted">
-            Calyx works by invitation or referral. We work with a limited number of organisations whose ambitions align with
-            our ecosystem and principles of discretion and high-trust collaboration.
-          </p>
-          <p class="muted">
-            All engagements are vetted to ensure strategic fit, confidentiality, and mutual value creation.
-          </p>
-          <div class="contact">
-            <div class="label">Contact</div>
-            <p>
-              <a href="mailto:concierge@calyx.global">concierge@calyx.global</a><br>
-              Dubai · Lagos · Beijing
-            </p>
-          </div>
-        </div>
-      </section>
-    </main>
+    <section class="footprint" id="footprint">
+      <div class="shell footprintHead">
+        <p class="sectionLabel light">02 / Footprint</p>
+        <h2>One network.<br>Three vantage points.</h2>
+      </div>
+      <div class="regions shell">
+        <article><span>31.2° N</span><h3>China</h3><p>Industrial scale, manufacturing capacity, and outbound capital.</p><b>01</b></article>
+        <article><span>25.2° N</span><h3>Gulf</h3><p>Sovereign influence, diversification agendas, and regional investment hubs.</p><b>02</b></article>
+        <article><span>9.1° N</span><h3>Africa</h3><p>Emerging markets in energy, infrastructure, and consumer growth.</p><b>03</b></article>
+      </div>
+    </section>
 
-    <footer>
-      <div>© Calyx Global Ltd. All rights reserved.</div>
-      <div>concierge@calyx.global</div>
+    <section class="sectors shell" id="sectors">
+      <div class="sectorsIntro">
+        <p class="sectionLabel">03 / Sectors of influence</p>
+        <h2>Where access becomes advantage.</h2>
+      </div>
+      <div class="sectorList">
+        <article><span>01</span><div><h3>Energy &amp; natural resources</h3><p>Oil, gas, minerals, renewables</p></div></article>
+        <article><span>02</span><div><h3>Logistics &amp; infrastructure</h3><p>Ports, aviation, supply chain, free zones</p></div></article>
+        <article><span>03</span><div><h3>Consumer &amp; lifestyle</h3><p>Beauty, fragrance, home, retail, distribution</p></div></article>
+        <article><span>04</span><div><h3>Capital &amp; investment</h3><p>Family offices, private equity, venture capital</p></div></article>
+      </div>
+    </section>
+
+    <section class="engagement shell">
+      <div class="engagementCard">
+        <p class="sectionLabel light">04 / Engagement</p>
+        <h2>Built on discretion.<br>Open by invitation.</h2>
+        <p>We work with a limited number of organisations whose ambitions align with our ecosystem and principles of high-trust collaboration.</p>
+        <a href="mailto:concierge@calyx.global">Start a private conversation <span>→</span></a>
+      </div>
+      <aside>
+        <span>THE CALYX STANDARD</span>
+        <div class="seal">C<small>CAPITAL<br>CULTURE<br>ACCESS</small></div>
+        <p>Every engagement is vetted for strategic fit, confidentiality, and mutual value.</p>
+      </aside>
+    </section>
+
+    <footer class="shell">
+      <a class="wordmark" href="#top">CALYX<span>®</span></a>
+      <p>Dubai · Lagos · Beijing</p>
+      <a href="mailto:concierge@calyx.global">concierge@calyx.global</a>
+      <small>© 2026 Calyx Global Ltd.</small>
     </footer>
-  </div>
+  </main>
 </body>
 </html>
